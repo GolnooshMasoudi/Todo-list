@@ -1,0 +1,28 @@
+.form-box {
+  padding: 3rem;
+  background: rgb(212 212 212);
+  text-align: center;
+}
+.title-form {
+  margin: 15px 0;
+  font-size: 28pt;
+}
+.hint-form {
+  color: gray;
+}
+.create-form {
+  margin: 20px;
+}
+.form-group input {
+  padding: 7px 15px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.form-group button {
+  background: dodgerblue;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-left: 15px;
+}

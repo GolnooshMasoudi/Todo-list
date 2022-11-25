@@ -45,25 +45,28 @@ const todos=[
 // })
 
 //array:
-// const numbers= [1, 2, 3, 4, 5];
+const numbers= [1, 2, 3, 4, 5];
+const useState= ["state", "setState"];
 
-// // const num1= numbers[0];
-// // const num2= numbers[1];
+const [x,y]= useState;
 
-// const [num1, , ,num4]= numbers
+// const num1= numbers[0];
+// const num2= numbers[1];
+
+const [num1, ,num2]= numbers
 
 // console.log(num1); // 1
 // console.log(num4); //2
 
 
 //object
-const profile = { firstName: "Zahra", lastName: "Yazdani" };
-// const fn= profile.firstName;
-// const ln= profile.lastName;
+// const profile = { firstName: "Zahra", lastName: "Yazdani" };
+// // const fn= profile.firstName;
+// // const ln= profile.lastName;
 
-const {firstName, lastName}=profile
-console.log(firstName);
-console.log(lastName);
+// const {firstName, lastName}=profile
+// console.log(firstName);
+// console.log(lastName);
 
 
 
@@ -87,5 +90,25 @@ console.log(lastName);
 //     console.log(btns[i]);
  
 //   }
+
+
+
+// Spread Operator syntax:
+let arr1 = [0, 1, 2];
+const arr2 = [3, 4, 5];
+
+arr1 = [...arr2, ...arr1];
+arr1 =arr1.concat(arr2)
+console.log(arr1); // [3, 4, 5, 0, 1, 2]
+arr1 = [...arr2, 100];
+
+
+console.log(arr1); // [3, 4, 5, 0, 1, 2, 100]
+
+
+
+const obj1 = { foo: 'bar', x: 42 };
+
+const obj2= {t:23, ...obj1, y:56};
 
 

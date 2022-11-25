@@ -9,37 +9,8 @@ header {
   padding: 1rem 2rem;
 }
 
-/* //////// create form ////////// */
-.form-box {
-  padding: 3rem;
-  background: rgb(212 212 212);
-  text-align: center;
-}
-.title-form {
-  margin: 15px 0;
-  font-size: 28pt;
-}
-.hint-form {
-  color: gray;
-}
-.create-form {
-  margin: 20px;
-}
-.form-group input {
-  padding: 7px 15px;
-  border: 1px solid gray;
-  border-radius: 10px;
-}
-.form-group button {
-  background: dodgerblue;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  margin-left: 15px;
-}
 
-/* /////////// todo card /////////////// */
+/* /////////// todo list /////////////// */
 .todo-list {
   width: 30%;
   margin: 30px auto;
@@ -69,32 +40,6 @@ header {
   background: gray;
 }
 
-.todo-card {
-  border: 1px solid #aaa;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-.btn-card {
-  color: white;
-  border: none;
-  padding: 5px 15px;
-  border-radius: 10px;
-  margin-left: 7px;
-}
-.undone-btn {
-  background-color: orange;
-}
-.done-btn {
-  background-color: green;
-}
-.edit-btn {
-  background-color: dodgerblue;
-}
-.delete-btn {
-  background-color: rgb(227, 5, 86);
-}
 
 
 /* ############ footer ############ */
