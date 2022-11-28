@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateTodo from "./components/CreateTodo";
@@ -34,12 +34,11 @@ export default function App() {
   ];
 
   // let totalUndone=0;
-  const [totalUndone, setTotalUndone] =useState(0);  //useState()
-
+  const [totalUndone, setTotalUndone] = useState(0); //useState()
 
   const btnClick = () => {
-    setTotalUndone(totalUndone+1);
-    console.log(totalUndone);//0 1
+    setTotalUndone(totalUndone + 1);
+    console.log(totalUndone); //0 1
   };
 
   //jsx ---> js + xml(html)
@@ -83,6 +82,4 @@ export default function App() {
       <Footer />
     </>
   );
-
-
 }
