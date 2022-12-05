@@ -34,10 +34,10 @@ header {
   margin-left: 5px;
 }
 .count-undone-tab {
-  background: green;
+  background: orange;
 }
 .count-done-tab {
-  background: gray;
+  background: green;
 }
 
 

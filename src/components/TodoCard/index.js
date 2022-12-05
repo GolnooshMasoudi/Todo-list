@@ -1,34 +1,51 @@
 import React, { useState } from "react";
 import "./TodoCard.css";
 
-const TodoCard = ({ id, title, status }) => {
-  //    const props= {
-  //         title:"¨hello",
-  //         id:"1"
-  //     }
+const TodoCard = ({ id, title,status, removeTodo, changeStatus }) => {
+  const [statusBtn, setStatusBtn] = useState(status);
+ 
 
-  // const {id, title}= props
+  const handleChangeStatus = () => {
+    
 
-  const [statusBtn, setStatusBtn] = useState("undone");
-
-  const changeStatus = () => {
-    if (statusBtn === "undone") {
-      setStatusBtn("done");
-      console.log("status changed");
-    } else {
-      setStatusBtn("undone");
-    }
+    changeStatus(statusBtn)
+    console.log("statusBtn:",statusBtn);
+   
+    setStatusBtn(!statusBtn);
+    
+    // setTotalUndone(totalUndone + 1);
   };
+
+  // const removeTodo =(id)=>{
+
+  //   console.log(id);
+  //     // todoList.filter((item)=>{
+  //     //   if (item.id !== id) {
+  //     //     return item;
+  //     //   }
+  //     // })
+
+  //  }
+
+  //  removeTodo(1)
 
   return (
     <div className="todo-card" id={id}>
       <p className="text-todo">{title}</p>
       <div>
-        <button className="btn-card undone-btn" onClick={changeStatus}>
-          {statusBtn}
+        <button
+          className={`btn-card ${
+            statusBtn === true ? "done-btn" : "undone-btn"
+          }`}
+          onClick={handleChangeStatus}
+        >
+          {statusBtn === true ? "done" : "undone"}
         </button>
+        {/* <button onClick={btnClick}>Test Button</button> */}
         <button className="btn-card edit-btn">edit</button>
-        <button className="btn-card delete-btn">delete</button>
+        <button className="btn-card delete-btn" onClick={() => removeTodo(id)}>
+          delete
+        </button>
       </div>
     </div>
   );

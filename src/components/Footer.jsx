@@ -32,12 +32,11 @@ const Footer = () => {
     },
   ];
 
-
-
   return (
-    <footer >
-      {linkList.map((item) => (
+    <footer>
+      {linkList.map((item, index) => (
         <FooterList
+          key={index}
           // lnk1={item.link1}
           // lnk2={item.link2}
           // lnk3={item.link3}

@@ -14,32 +14,84 @@ export default function App() {
     {
       id: "1",
       title: "hello",
-      status: "undone",
+      status: false,
     },
     {
       id: "2",
       title: "salam",
-      status: "undone",
+      status: false,
     },
     {
       id: "3",
       title: "hey",
-      status: "undone",
+      status: false,
     },
     {
       id: "4",
       title: "hi",
-      status: "undone",
+      status: false,
     },
   ];
 
   // let totalUndone=0;
-  const [totalUndone, setTotalUndone] = useState(0); //useState()
+  const [totalUndone, setTotalUndone] = useState(todos.length); //useState()
+  const [todoList, setTodoList] = useState(todos);
 
-  const btnClick = () => {
-    setTotalUndone(totalUndone + 1);
-    console.log(totalUndone); //0 1
+  const changeStatus = (status) => {
+  
+    console.log("statussssss:", status);
+    if (status) {
+      setTotalUndone(totalUndone + 1);
+    }else{
+      setTotalUndone(totalUndone - 1);
+    }
+
   };
+
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((item) => item.id !== id);
+
+    setTodoList(newTodoList);
+
+    // let newTodoListForEach=[];
+    // let newTodoListMap=[];
+    // let newTodoListFor=[];
+
+    // for (let i = 0; i < todoList.length; i++) {
+    //   if (todoList[i].id !== id) {
+    //     newTodoListFor.push(todoList[i]);
+    //   }
+
+    // }
+
+    //  todoList.forEach((item)=>{
+    //     if (item.id !== id) {
+    //       newTodoListForEach.push(item);
+    //     }
+
+    //   })
+
+    //  todoList.map((item)=>{
+    //     if (item.id !== id) {
+    //       newTodoListMap.push(item);
+    //     }
+    //   })
+    // console.log(newTodoListForEach);
+    // console.log(newTodoListMap);
+    // console.log(newTodoListFor);
+  };
+
+  const addTodo =(id,text)=>{
+    const newTodo= {
+      id: id,
+      title:text,
+      status: false,
+    }
+    // let newTodoList=todoList
+    // newTodoList.push(newTodo)
+    // setTodoList(newTodoList)
+    setTodoList([newTodo,...todoList])
+  }
 
   //jsx ---> js + xml(html)
   return (
@@ -47,7 +99,7 @@ export default function App() {
       <Header />
 
       <main>
-        <CreateTodo />
+        <CreateTodo addTodo={addTodo}/>
 
         <div className="todo-list">
           <div className="todo-list-header">
@@ -55,25 +107,25 @@ export default function App() {
               <span className="text-tab">undone</span>
               <span className="count-tab count-undone-tab">{totalUndone}</span>
             </button>
-
+            {/* <button onClick={btnClick}>Test Button</button> */}
             <button className="tab-btn done-tab-btn">
               <span className="text-tab">done</span>
-              <span className="count-tab count-done-tab">8</span>
+              <span className="count-tab count-done-tab">{todoList.length-totalUndone}</span>
             </button>
           </div>
 
-          <button onClick={btnClick}>Test Button</button>
-
           <div className="todo-list-body">
-            {/* TodoCard("1", "hello") */}
-            {/* <TodoCard id="1" title="hello" /> */}
-            {/* todos.map(function(item){
-                return <TodoCard id={item.id} title={item.title} /> 
-              }) */}
-
-            {todos.map((item) => (
-              <TodoCard {...item} />
+            {todoList.map((item) => (
+              <TodoCard
+                key={item.id}
+                {...item}
+                removeTodo={removeTodo}
+                title2="test"
+                changeStatus={changeStatus}
+                
+              />
             ))}
+
             {/* <TodoCard id={item.id} title={item.title} /> */}
           </div>
         </div>
