@@ -1,40 +1,34 @@
 import React, { useState } from "react";
 import "./CreateTodo.css";
 
-const CreateTodo = ({ addTodo }) => {
-  // const [id, setId] = useState("");
-  // const [text, setText] = useState("");
+const CreateTodo = ({ addTodo, handleTotalDone }) => {
 
   const [todoInfo, setTodoInfo] = useState({
-    id: "",
+    // id: "",
     text: "",
   });
 
-
-  //state manager:
-  //context ---> useContext
-  // redux  ----> redux-toolkit
-
   const [errors, setErrors] = useState("");
-  const { id, text } = todoInfo;
+
+  const { text } = todoInfo;
 
   const clickAddBtn = (e) => {
     e.preventDefault();
-    // console.log(text);
 
-    if (id === "" || text === "") {
-      setErrors("please fill necessary fiels!");
+    if (text === "") {
+      setErrors("please fill the feild!");
     } else {
-      addTodo(id, text);
+
+      addTodo(text);
       setTodoInfo({
-        id: "",
+        // id: "",
         text: "",
       });
       setErrors("");
+
     }
 
-    // setId("");
-    // setText("");
+
   };
 
   return (
@@ -44,14 +38,7 @@ const CreateTodo = ({ addTodo }) => {
 
       <form action="" className="create-form">
         <div className="error">{errors}</div>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="id..."
-            value={id}
-            onChange={(e) => setTodoInfo({ ...todoInfo, id: e.target.value })}
-          />
-        </div>
+        
         <div className="form-group">
           <input
             type="text"

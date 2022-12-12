@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateTodo from "./components/CreateTodo";
 import TodoCard from "./components/TodoCard";
 
 import "./App.css";
-//function components a function that return a jsx and have options(hooks)
-// hook: 1- useState 2-useEffect 3-useQuery , ...
-// customeHook: useZahra
 
 export default function App() {
   const todos = [
@@ -33,26 +30,43 @@ export default function App() {
     },
   ];
 
-  // let totalUndone=0;
-  const [totalUndone, setTotalUndone] = useState(todos.length); //useState()
   const [todoList, setTodoList] = useState(todos);
+  const [totalUndone, setTotalUndone] = useState(0);
 
-  const changeStatus = (status) => {
-  
-    console.log("statussssss:", status);
-    if (status) {
-      setTotalUndone(totalUndone + 1);
-    }else{
-      setTotalUndone(totalUndone - 1);
-    }
+  useEffect(() => {
+    const undoneTodos = todoList.filter((item) => item.status === false);
+    setTotalUndone(undoneTodos.length);
+  }, [todoList]);
 
+  const editTodo = (id, editedText) => {
+    const newTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        item.title = editedText;
+      }
+      return item;
+    });
+
+    setTodoList(newTodoList);
+  };
+
+  const changeStatus = (id) => {
+
+
+    const newTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        item.status = !item.status;
+      }
+      return item;
+    });
+
+    setTodoList(newTodoList);
   };
 
   const removeTodo = (id) => {
     const newTodoList = todoList.filter((item) => item.id !== id);
 
     setTodoList(newTodoList);
-
+    // setTotalUndone(totalUndone - 1);
     // let newTodoListForEach=[];
     // let newTodoListMap=[];
     // let newTodoListFor=[];
@@ -81,25 +95,26 @@ export default function App() {
     // console.log(newTodoListFor);
   };
 
-  const addTodo =(id,text)=>{
-    const newTodo= {
-      id: id,
-      title:text,
+  const addTodo = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      title: text,
       status: false,
-    }
+    };
     // let newTodoList=todoList
     // newTodoList.push(newTodo)
     // setTodoList(newTodoList)
-    setTodoList([newTodo,...todoList])
-  }
+    setTodoList([newTodo, ...todoList]);
+    // setTotalUndone(totalUndone + 1);
+  };
 
-  //jsx ---> js + xml(html)
+
   return (
     <>
       <Header />
 
       <main>
-        <CreateTodo addTodo={addTodo}/>
+        <CreateTodo addTodo={addTodo} />
 
         <div className="todo-list">
           <div className="todo-list-header">
@@ -107,10 +122,12 @@ export default function App() {
               <span className="text-tab">undone</span>
               <span className="count-tab count-undone-tab">{totalUndone}</span>
             </button>
-            {/* <button onClick={btnClick}>Test Button</button> */}
+
             <button className="tab-btn done-tab-btn">
               <span className="text-tab">done</span>
-              <span className="count-tab count-done-tab">{todoList.length-totalUndone}</span>
+              <span className="count-tab count-done-tab">
+                {todoList.length - totalUndone}
+              </span>
             </button>
           </div>
 
@@ -120,13 +137,10 @@ export default function App() {
                 key={item.id}
                 {...item}
                 removeTodo={removeTodo}
-                title2="test"
+                editTodo={editTodo}
                 changeStatus={changeStatus}
-                
               />
             ))}
-
-            {/* <TodoCard id={item.id} title={item.title} /> */}
           </div>
         </div>
       </main>
